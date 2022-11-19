@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% block content %}
+<body>
+    <div class="row mb-3">
+        <p><em>Du är inloggad som:
+            Fredrik Lindblad
+            (Framtiden)
+            </em></p>
+    </div>
+    <div class="row">
+        <h4 class="mt-2 mb-2">Omgång 1 Status</h4>
+        <div class="container text-center border bg-light">
+            <div class="row p-3">
+                <div class="col-4 border bg-light">
+                    <strong>Snittpoäng</strong><br>
+                    43
+                </div>
+                <div class="col-4 border bg-light">
+                    <strong>Din Poäng</strong><br>
+                    77
+                </div>
+                <div class="col-4 border bg-light">
+                    <strong>Högst Poäng</strong><br>
+                    77
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="mt-2 mb-2">Omgång 1 bästa elva</h4>
+            <div class="card mb-2 text-center mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Omgångens spelare</h5>
+                    <p class="card-text">Daniel Paulson<br>15 p</p>
+                    <a href="#" class="btn btn-dark">Statistik</a>
+                </div>
+            </div>
+        <div class="container border bg-light">
+            <div class="row p-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Namn</th>
+                                <th>Klubb</th>
+                                <th>OP</th>
+                                <th>TP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(11) %}
+                                <tr>    
+                                    <td>DEF</td>
+                                    <td>Sahlin</td>
+                                    <td>ÖIS</td>
+                                    <td>8</td>
+                                    <td>15</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>    
+        </div>
+    </div>
+
+    <h4 class="mt-2 mb-2">Vanligaste övergångarna in</h4>
+    <div class="container border bg-light">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Spelare</th>
+                    <th>Klubb</th>
+                    <th>Antal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: select the most common five from transfers table for the current round -->
+                <!-- <tr>
+                    <td>Mittfältare</td>
+                    <td>Ljung</td>
+                    <td>SÖD</td>
+                    <td>4</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <h4 class="mt-2 mb-2">Vanligaste övergångarna ut</h4>
+    <div class="container border bg-light">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Spelare</th>
+                    <th>Klubb</th>
+                    <th>Antal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: select the most common five from transfers table for the current round -->
+                <!-- <tr>
+                    <td>Back</td>
+                    <td>Azulay</td>
+                    <td>ÖIS</td>
+                    <td>1</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row">
+        <div class="row border mt-3 mb-3 bg-white">
+            <strong>Poäng/Ranking</strong><br>
+            <p>
+                Poäng Total: ?<br> <!-- SELECT SUM(points) from teams WHERE user_id == ? -->
+                Övergripande Ranking: ?<br> <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+                Totalt antal spelare: ?<br> <!-- SELECT COUNT(team_id) from teams WHERE competition_id == ? -->
+                Poäng Omgång: ?<br> <!-- TODO: does this logic work? 1. get largest in round_id 2. SELECT points from teams WHERE round_id and user_id == ? -->
+            </p>
+        </div>
+        <div class="row border mb-3 bg-white">
+            <strong>Favoritlag</strong><br>
+            <p>
+                <!-- TODO: fav team from favorite_teams table -->
+                *fav team*<br>
+                <a href="#!">Hemsida</a><br> <!-- SELECT website_url from clubs WHERE club_id == ? -->
+                Antal Fans: ?<br> <!-- SELECT COUNT(favorite_team_id) from favorite_teams WHERE club_id == ? and competition_id == ? -->
+            </p>
+        </div>
+        <div class="row border mb-3 bg-white">
+            <strong>Globala Ligor</strong><br>
+            <p>
+                Totalrank: ?<br> <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+                Omgång 1: ?<br> <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+                *fav team*: ? <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+            </p>
+        </div>
+        <div class="row border mb-3 bg-white">
+            <strong>Dina Ligor</strong><br>
+            <p>
+                Ljungbackentråden: ?<br> <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+                Lindblads: ?<br> <!-- TODO: use RANK, OVER, GROUPBY etc in SQL for this query -->
+            </p>
+        </div>
+        <div class="row border mb-3 bg-white">
+            <strong>Övergångar och ekonomi</strong><br>
+            <p>
+                Fria övergångar: ?<br> <!-- SELECT avail_transf from teams WHERE team_id == ? -->
+                Totalt antal övergångar: ?<br> <!-- SELECT COUNT(transfer_id) from transfers WHERE team_id == ? -->
+                Truppvärde: ?.?<br> <!-- SELECT squad_value from teams WHERE team_id == ? -->
+                På banken: ?.?<br> <!-- SELECT avail_cash from teams WHERE team_id == ? -->
+                <!-- TODO: add this function later -->
+                <a href="{{ url_for('api_get_transfer_history') }}">Visa övergångshistorik</a> <!-- SELECT * from transfers WHERE team_id == ?. Then show a table for rounds. -->
+            </p>
+        </div>
+    </div>
+</body>
+{% endblock content %}

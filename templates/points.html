@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- 
+How this page is supposed to work:
+
+    * When rendering:
+        1. Fill points and team table with current round from team_players table WHERE team_id == ? and round_id == ?
+        2. Fill points from teams table with round_id and team_id
+        3. Fill average points from team table with round_id and AVERAGE()-function
+        4. Fill previous round with teams table and current round minus 1
+
+    * Functions on page:
+        1. Next round (check if possible, set a max of 30 and light grey if unavailable button)
+           When coming to Next round - show opponent of your current players.
+        2. Previous round (check if possible, set a min of 1 and light grey if unavailable button)
+
+    Communication with database when:
+        * page rendered
+        * change of round
+
+-->
+
+<body>
+    <div class="text-center mb-2">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <a class="btn btn-success bg-secondary" href="" role="button"><</a>
+            <a class="btn btn-success bg-dark" style="color:white" href="" role="button">Omgång 1</a>
+            <a class="btn btn-success bg-primary" href="" role="button">></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <h4 class="mt-2 mb-2">Omgång 1 Status</h4>
+        <div class="container text-center border bg-light">
+            <div class="row p-3">
+                <div class="col-4 border bg-light">
+                    <strong>Föregående omgång</strong><br>
+                    43
+                </div>
+                <div class="col-4 border bg-light">
+                    <strong>Total Omgång 1</strong><br>
+                    77
+                </div>
+                <div class="col-4 border bg-light">
+                    <strong>Genomsnitt Omgång 1</strong><br>
+                    77
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row justify-content-center">
+            {% for player in players %}
+            {% if player['position'] == 'GK' %}
+            <div class="col">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ player['last_name'] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ player['club_id'] }}</h6>
+                    <p class="card-text">{{ player['price'] }}</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <script src="/static/javascript/points.js" type="text/javascript"></script>
+</body>
+{% endblock content %}

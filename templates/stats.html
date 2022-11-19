@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- 
+How this page is supposed to work:
+
+    * When rendering:
+        1. Complete players list sorted on max points shall be shown when page rendered.
+        2. Table Pagination that shows 15 players per page.
+
+    * Functions on page:
+        1. Filter on position and club (if possible, set a max of 30 and light grey if unavailable button)
+            TODO: the filters are the same as on myTeam-page. Can we make this so only written once?
+        2. Sort option
+
+    Communication with database when:
+        * page rendered
+
+-->
+
+    <div class="row">
+        <div>
+            <p class="fw-bold mb-1">Position</p>
+            <select id="filtPositionStats" value ='' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value='' selected></option>
+                <option value="GK">Målvakter</option>
+                <option value="DEF">Backar</option>
+                <option value="MF">Mittfältare</option>
+                <option value="FWD">Forwards</option>
+            </select>
+        </div>
+        <div>
+            <div class="mt-1 mb-1">
+                <p class="fw-bold mb-1">Lag</p>
+                <select id="filtClub" value ='' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option value='' selected></option>
+                    <!-- TODO: for-loop competition_clubs table, return list of alla club in the competition (value=club_id, dropdown-name = name from clubs table). Sort ascending from A-Ö -->
+                    <option value="ÖFK">Östersunds FK</option>
+                    <option value="HBK">Halmstads BK</option>
+                    <option value="ÖIS">Örgryte IS</option>
+                    <option value="SAIK">Skövde AIK</option>
+                    <option value="ÖIF">Östers IF</option>
+                    <option value="SÖD">Jönköpings Södra</option>
+                    <option value="ÖSK">Örebro SK</option>
+                    <option value="VSK">Västerås SK</option>
+                    <option value="BP">Brommapojkarna</option>
+                    <option value="TFF">Trelleborgs FF</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <p class="fw-bold mb-1">Sortera efter</p>
+            <select id="filtOtherStats" value ='' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value='' selected></option>
+                <option value="NP">Pris</option>
+                <option value="TP">Totalpoäng</option>
+                <option value="POP">Popularitet</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a class="btn btn-secondary btn-sm mt-3" onclick="getPlayersStats()" role="button">Visa spelare</a>
+    </div>
+    <div class="row border mt-3 mb-3 bg-white">
+        <table class="table">
+            <tr>
+                <thead>
+                    <th>Spelare</th>
+                    <th title="Position">Pos</th>
+                    <th title="Pris">Pris</th>
+                    <th title="Popularitet">Pop</th>
+                    <th title="Totalpoäng">TP</th>
+                </thead>
+            </tr>
+            <tbody id="statsTable">
+                <!-- TODO: complete players list sorted on max points shall be shown when page rendered. Set max of 15 players then swith page buttons (table pagination). -->
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

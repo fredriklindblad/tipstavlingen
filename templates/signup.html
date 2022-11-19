@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<form class="form-signin" method="POST" action="/sign-up">
+    <h3 text-align="center">Registrera dig</h3>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.email) }}
+    {{ wtf.form_field(form.password) }}
+    <button type="submit" class="btn btn-primary">Registrera</button>
+</form>
+{% endblock content %}

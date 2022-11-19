@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="mt-5 mb-5">
+      <h5>Privata ligor</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 40%">Liga</th>
+            <th scope="col" style="width: 40%">Nuvarande ranking</th>
+            <th scope="col" style="width: 20%">Senaste ranking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#!">Ljungbacketråden</a></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><a href="#!">Lindblads</a></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-5 mb-5">
+      <h5>Globala ligor</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 40%">Liga</th>
+            <th scope="col" style="width: 40%">Nuvarande ranking</th>
+            <th scope="col" style="width: 20%">Senaste ranking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#!">Totalrank</a></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><a href="#!">Omgång 1</a></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><a href="#!">IFK Värnamo</a></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+<!-- Active league that will be shown when pressing hyperlink (TODO: no new request, all my leagues will be loaded when loading page.) -->
+
+  <!-- SELECT -->
+    <div class="container border bg-light">
+        <h3 class="text-center">Lindblads</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Lag</th>
+                <th scope="col">Tränare</th>
+                <th scope="col">Poäng omgång</th>
+                <th scope="col">Poäng total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Framtiden</td>
+                <td>Fredrik Lindblad</td>
+                <td>77</td>
+                <td>777</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>John Lindblad</td>
+                <td>Lirarnas lag</td>
+                <td>67</td>
+                <td>677</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Benjamin Lindblad</td>
+                <td>Jaget före laget</td>
+                <td>57</td>
+                <td>577</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+{% endblock content %}

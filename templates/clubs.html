@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1> {{ title }} </h1>
+    <h3> Here are the teams in Superettan 2022: </h3>
+    {% for team in teams %}
+        {{team['name']}}
+        <br>
+    {% endfor %}
+</body>
+</html>

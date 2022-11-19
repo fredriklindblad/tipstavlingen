@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <body>
+        <div class="col-9">
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 60%">Event</th>
+                    <th class="text-end" scope="col" style="width: 40%">Poäng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                        <td>{{event['name']}}</td>
+                        <td class="text-end">{{event['points']}}</td>
+                        </tr>    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+{% endblock content %}

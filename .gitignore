@@ -1,0 +1,4 @@
+__pycache__/
+sandbox/
+db_data/
+.env
