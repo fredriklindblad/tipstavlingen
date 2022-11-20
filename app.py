@@ -10,28 +10,14 @@ from flask_sqlalchemy import SQLAlchemy
 from decouple import config
 from distutils.util import strtobool
 from db_utils import *
+from excel_integration import *
+import pandas as pd
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisissupposedtobesecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'db_data/database.db'
 Bootstrap(app)
 db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
-
-class LoginForm(FlaskForm):
-    username = StringField('Användarnamn', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('Lösenord', validators=[InputRequired(), Length(min=8, max=80)])
-    remember = BooleanField('Kom ihåg')
-
-class RegisterForm(FlaskForm):
-    email = StringField('Email', validators=[InputRequired(), Email(message='Ogiltig epost'), Length(max=50)])
-    username = StringField('Användarnamn', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('Lösenord', validators=[InputRequired(), Length(min=8, max=80)])
 
 ''' Page routes '''
 
@@ -44,7 +30,7 @@ def home():
 
 @app.route("/my-team")
 def myTeam():
-    return render_template('myTeam.html', title='Ta ut lag för nästa omgång', players=get_team_players(team_id=2))
+    return render_template('pivot.html')
 
 @app.route("/transfers")
 def transfers():
